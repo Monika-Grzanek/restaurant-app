@@ -1,6 +1,6 @@
 //selectors
-export const getAllTables = state => state.tables;
-export const getTableById = ({tables}, id) => tables.find(table => table.id == id);
+export const getAllTables = state => state.tables.data;
+export const getTableById = ({tables}, id) => tables.data.find(table => table.id === id);
 // actions
 
 const createActionName = actionName => `app/tables/${actionName}`;
@@ -27,10 +27,10 @@ export const editTableRequest = (newTable) => {
     },
     body: JSON.stringify(newTable)
   };
-  fetch('http://localhost:3131/tables/:idTable', options)
+  fetch('http://localhost:3131/tables/' + newTable.idTable, options)
     .then(() => dispatch(editTable(newTable)));
   };
-
+}
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
       case UPDATE_TABLES: 
