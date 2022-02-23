@@ -34,9 +34,9 @@ export const editTableRequest = (newTable) => {
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
       case UPDATE_TABLES: 
-        return [...action.payload]
+        return { ...statePart, data: [...action.payload]}
       case EDIT_TABLE:
-        return statePart.map(table => (table.id === action.payload.id ? { ...table, ...action.payload } : table));
+        return { ...statePart, data: statePart.map(table => (table.id === action.payload.id ? { ...table, ...action.payload } : table))};
       default:
         return statePart;
     };
