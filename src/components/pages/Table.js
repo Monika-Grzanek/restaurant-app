@@ -37,10 +37,17 @@ const Table = () => {
 
     if(!idTable) return <Navigate to="/" />;
     
-    const handleSubmit = table => {
-        dispatch(editTableRequest({...table, idTable}));
+    const handleSubmit = e => {
+        e.preventDefault();
+        const modifiedTable = {
+          ...table,
+          status,
+          peopleAmount,
+          maxPeopleAmount,
+          bill
+        }
+        dispatch(editTableRequest(modifiedTable));
         navigate('/');
-        console.log(table)
     }
 
     return(
@@ -75,13 +82,11 @@ const Table = () => {
                         $
                         <InputNumber value={bill} onChange={e => setBill(e.currentTarget.value)} > {table.bill} </InputNumber>
                     </Col>
-                </Row>) : null}        
+                </Row>) : null}       
+                <Button variant="primary" type="submit">
+                    Update
+                </Button> 
             </Form>
-            <Button variant="primary" type="submit">
-                Update
-            </Button>
-
-        
             
         </div>
     )

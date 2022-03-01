@@ -11,7 +11,7 @@ const Home = () => {
                 <h1>All Tables:</h1>
             </div>
             <Container>
-                {tables.map(table => <TablesHome key={table.id} {...table} /> )}
+                {tables && tables.map(table => <TablesHome key={table.id} {...table} /> )}
             </Container>
         </div>
     )

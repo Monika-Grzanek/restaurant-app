@@ -1,5 +1,12 @@
 const initialState = {
-    tables: []
+    tables: [
+        {
+            pending: false,
+        },
+        {
+            data: []
+        }
+    ]
 }
 
 export default initialState;

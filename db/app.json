@@ -1,9 +1,6 @@
 {
   "tables":[
     {
-      "pending": false
-    },
-    {
       "data":[
         {
           "id":1,
