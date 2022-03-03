@@ -1,11 +1,12 @@
 import { Form, Row, Col, Button} from "react-bootstrap";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTableById, editTableRequest } from "../../redux/tablesRedux";
+import { getTableById, editTableRequest, getTablePending } from "../../redux/tablesRedux";
 import { useParams } from "react-router-dom";
 import { InputNumber } from "../views/Input/InputNumber";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Loader from "../views/Loader";
 
 const Table = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Table = () => {
     const {idTable} = useParams();
     const table = useSelector(state => getTableById(state, parseInt(idTable)));
     const tablesStatus = ['Busy', 'Reserved', 'Free', 'Cleaning'];
+    const pending = useSelector(getTablePending);
 
     const [status, setStatus] = useState(table.status);
     const [peopleAmount, setPeopleAmount] = useState(table.peopleAmount);
@@ -53,7 +55,8 @@ const Table = () => {
     return(
         <div>
             <h1>Table {idTable}</h1>
-            <Form onSubmit={handleSubmit}>
+            {pending && <Loader />}
+            {!pending && <Form onSubmit={handleSubmit}>
                 <Row className="mb-3 d-flex justify-content-start" controlId="formBasicStatus">
                     <Col className="col-1">
                         <Form.Label><strong>Status:  </strong></Form.Label>
@@ -86,7 +89,7 @@ const Table = () => {
                 <Button variant="primary" type="submit">
                     Update
                 </Button> 
-            </Form>
+            </Form>}
             
         </div>
     )

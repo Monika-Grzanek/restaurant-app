@@ -2,17 +2,21 @@ import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getAllTables } from "../../redux/tablesRedux";
 import TablesHome from "../views/TablesHome";
+import Loader from "../views/Loader";
+import { getTablePending } from "../../redux/tablesRedux";
 
 const Home = () => {
     const tables = useSelector(getAllTables);
+    const pending = useSelector(getTablePending);
     return(
         <div>
             <div>
                 <h1>All Tables:</h1>
             </div>
-            <Container>
+            {pending && <Loader />}
+            {!pending && <Container>
                 {tables && tables.map(table => <TablesHome key={table.id} {...table} /> )}
-            </Container>
+            </Container>}
         </div>
     )
 }
