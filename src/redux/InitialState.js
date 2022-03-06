@@ -1,6 +1,6 @@
 const initialState = {
     tables: {
-        pending: false,
+        pending: true,
         data: []       
     }
 }
