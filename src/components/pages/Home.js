@@ -8,6 +8,7 @@ import { getTablePending } from "../../redux/tablesRedux";
 const Home = () => {
     const tables = useSelector(getAllTables);
     const pending = useSelector(getTablePending);
+    console.log('pending:', pending);
     return(
         <div>
             <div>

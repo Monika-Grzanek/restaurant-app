@@ -15,6 +15,7 @@ const Table = () => {
     const table = useSelector(state => getTableById(state, parseInt(idTable)));
     const tablesStatus = ['Busy', 'Reserved', 'Free', 'Cleaning'];
     const pending = useSelector(getTablePending);
+    console.log('pending:', pending);
 
     const [status, setStatus] = useState(table.status);
     const [peopleAmount, setPeopleAmount] = useState(table.peopleAmount);
